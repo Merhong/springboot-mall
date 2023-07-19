@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,24 +40,15 @@
             </tr>
         </thead>
         <tbody>
+        <c:forEach var="p" items="${productList}">
             <tr>
-                <td>1</td>
-                <td>바나나</td>
-                <td>1000원</td>
-                <td>50개</td>
+                <td>${p.id}</td>
+                <td>${p.name}</td>
+                <td>${p.price}원</td>
+                <td>${p.qty}개</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>사과</td>
-                <td>2000원</td>
-                <td>50개</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>참외</td>
-                <td>500원</td>
-                <td>50개</td>
-            </tr>
+        </c:forEach>
+
         </tbody>
     </table>
 </div>
