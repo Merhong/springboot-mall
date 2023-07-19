@@ -32,12 +32,12 @@
 <div class="container mt-3">
     <table class="table">
         <thead>
-            <tr>
-                <th>상품번호</th>
-                <th>상품명</th>
-                <th>상품가격</th>
-                <th>상품재고</th>
-            </tr>
+        <tr>
+            <th>상품번호</th>
+            <th>상품명</th>
+            <th>상품가격</th>
+            <th>상품재고</th>
+        </tr>
         </thead>
         <tbody>
         <c:forEach var="p" items="${productList}">
@@ -48,7 +48,6 @@
                 <td>${p.qty}개</td>
             </tr>
         </c:forEach>
-
         </tbody>
     </table>
 </div>

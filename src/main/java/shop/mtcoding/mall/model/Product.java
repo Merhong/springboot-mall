@@ -5,7 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter @Setter
+@Getter
+@Setter
 @Table(name = "product_tb") // 테이블명 설정
 @Entity // 필드 분석후 테이블 제작
 public class Product {
