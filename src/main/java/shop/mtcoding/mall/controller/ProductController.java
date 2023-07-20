@@ -25,7 +25,8 @@ public class ProductController {
     @GetMapping("/")
     public String home(HttpServletRequest request) {
 
-        List<Product> productList = productRepository.findAll();
+        // 상품 전체 항목 조회
+        List<Product> productList = productRepository.findAll(); // 모든 항목을 조회한 후에 리스트에 담는다.
         request.setAttribute("productList", productList); // request에 productList 담아서 view에서 사용
 
         // ViewResolver 클래스 발동 WEB-INF/views/home.jsp
@@ -87,8 +88,7 @@ public class ProductController {
         // 상품 수정 (update)
         productRepository.updateRepo(id, name, price, qty); // 업데이트할 값을 매개변수로 메서드 호출
 
-        // Redirect : Springboot에서 지원하는 문법
+        // Redirect:/ -> Springboot에서 지원하는 문법
         return "redirect:/";
     }
-
 }

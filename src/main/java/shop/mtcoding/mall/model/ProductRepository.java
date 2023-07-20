@@ -43,7 +43,7 @@ public class ProductRepository {
 
     // id 사용해서 조회
     public Product findById(int id) {
-        Query query = em.createNativeQuery("select * from product_tb where id = :id", Product.class); /// :id는 쿼리문에서 메서드의 매개변수를 할당하는 표현
+        Query query = em.createNativeQuery("select * from product_tb where id = :id", Product.class); // :id는 쿼리문에서 메서드의 매개변수를 할당하는 표현
         query.setParameter("id", id);   // 변수 바인딩
         Product product = (Product) query.getSingleResult();  // 한건이면 getSingleResult(), 여러건이면 getResultList()
         return product;
@@ -53,7 +53,7 @@ public class ProductRepository {
     @Transactional
     public void deleteById(int id) {
         Query query = em.createNativeQuery("delete from product_tb where id = :id", Product.class); // :id는 쿼리문에서 메서드의 매개변수를 할당하는 표현
-        query.setParameter("id", id);
+        query.setParameter("id", id);   // 변수 바인딩 : id "컬럼" 과 id "변수"를 매칭
         query.executeUpdate();  // 전송
     }
 
@@ -61,11 +61,10 @@ public class ProductRepository {
     @Transactional
     public void updateRepo(int id, String name, int price, int qty) {
         Query query = em.createNativeQuery("UPDATE product_tb SET name = :name, price = :price, qty = :qty where id = :id", Product.class);
-        query.setParameter("id", id);      // 변수 바인딩
+        query.setParameter("id", id);       // 변수 바인딩 : id "컬럼" 과 id "변수"를 매칭
         query.setParameter("name", name);
         query.setParameter("price", price);
         query.setParameter("qty", qty);
         query.executeUpdate();  // 전송
-
     }
 }

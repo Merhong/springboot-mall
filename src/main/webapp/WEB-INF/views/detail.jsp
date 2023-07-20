@@ -27,7 +27,7 @@
 <div class="container mt-3">
     <form action="/product/update" method="post" enctype="application/x-www-form-urlencoded">
         <div class="mb-3 mt-3">
-            ID<input type="text" class="form-control" value="${p.id}" name="id">
+            ID<input type="text" class="form-control" value="${p.id}" name="id" readonly>
         </div>
         <div class="mb-3 mt-3">
             이름<input type="text" class="form-control" value="${p.name}" name="name">
