@@ -18,10 +18,13 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">상품목록</a>
+                    <a class="nav-link" href="/home">상품목록</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/write">상품등록</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/detail">상품상세보기</a>
                 </li>
             </ul>
         </div>

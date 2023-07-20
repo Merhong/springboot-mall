@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">쇼핑몰</a>
+        <a class="navbar-brand" href="/home">쇼핑몰</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,16 +30,16 @@
 <div class="container mt-3">
     <form action="/product/update" method="post" enctype="application/x-www-form-urlencoded">
         <div class="mb-3 mt-3">
-            <input type="text" class="form-control" value="${p.id}" name="id">
+            ID<input type="text" class="form-control" value="${p.id}" name="id">
         </div>
         <div class="mb-3 mt-3">
-            <input type="text" class="form-control" value="${p.name}" name="name">
+            NAME<input type="text" class="form-control" value="${p.name}" name="name">
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" value="${p.price}" name="price">
+            가격<input type="text" class="form-control" value="${p.price}" name="price">
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" value="${p.qty}" name="qty">
+            재고<input type="text" class="form-control" value="${p.qty}" name="qty">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

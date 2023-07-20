@@ -33,7 +33,7 @@ public class ProductRepository {
 
     // id 사용해서 조회
     public Product findById(int id) {
-        Query query = em.createNativeQuery("select * from product_tb where id = :id", Product.class);
+        Query query = em.createNativeQuery("select * from product_tb where id = :id", Product.class); // :id는 메서드의 매개변수 할당하는 표현
         query.setParameter("id", id);   // 변수 바인딩
         Product product = (Product) query.getSingleResult();  // 한건이면 getSingleResult(), 여러건이면 getResultList()
         return product;

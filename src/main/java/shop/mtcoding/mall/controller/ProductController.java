@@ -1,5 +1,6 @@
 package shop.mtcoding.mall.controller;
 
+import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,10 @@ public class ProductController {
     // question? SRP 위배에 관련된 것.
 
     @GetMapping("/product/{id}")
-    public String detail(@PathVariable int id) {
+    public String detail(@PathVariable int id, HttpServletRequest request) {
         System.out.println("id : " + id);
         Product product = productRepository.findById(id);
+        request.setAttribute("p", product); // 가방(request)에 수건(product)을 담아서 view에서 사용
         System.out.println(product.getId());
         System.out.println(product.getName());
         System.out.println(product.getPrice());
@@ -35,7 +37,7 @@ public class ProductController {
     public String home(HttpServletRequest request) {
 
         List<Product> productList = productRepository.findAll();
-        request.setAttribute("productList", productList);
+        request.setAttribute("productList", productList); // request에 productList 담아서 view에서 사용
 
 
         return "home"; // ViewResolver 클래스 발동 WEB-INF/views/home.jsp
