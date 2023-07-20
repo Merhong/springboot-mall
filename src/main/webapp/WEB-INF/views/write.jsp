@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">쇼핑몰</a>
+        <a class="navbar-brand" href="/home">쇼핑몰</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,9 +22,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/write">상품등록</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/detail">상품상세보기</a>
                 </li>
             </ul>
         </div>

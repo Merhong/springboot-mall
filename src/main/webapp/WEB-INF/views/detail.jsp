@@ -20,9 +20,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">상품목록</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/write">상품등록</a>
-                </li>
             </ul>
         </div>
     </div>

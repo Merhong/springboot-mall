@@ -24,9 +24,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/write">상품등록</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/detail">상품상세보기</a>
-                </li>
             </ul>
         </div>
     </div>
