@@ -11,14 +11,14 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/home">쇼핑몰</a>
+        <a class="navbar-brand" href="/">쇼핑몰</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/home">상품목록</a>
+                    <a class="nav-link" href="/">상품목록</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/write">상품등록</a>
@@ -39,7 +39,7 @@
         <div class="mb-3">
             <input type="text" class="form-control" placeholder="Enter 상품재고" name="qty">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">상품등록</button>
     </form>
 </div>
 

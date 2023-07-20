@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/home">쇼핑몰</a>
+        <a class="navbar-brand" href="/">쇼핑몰</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +30,7 @@
             ID<input type="text" class="form-control" value="${p.id}" name="id">
         </div>
         <div class="mb-3 mt-3">
-            NAME<input type="text" class="form-control" value="${p.name}" name="name">
+            이름<input type="text" class="form-control" value="${p.name}" name="name">
         </div>
         <div class="mb-3">
             가격<input type="text" class="form-control" value="${p.price}" name="price">
@@ -38,7 +38,11 @@
         <div class="mb-3">
             재고<input type="text" class="form-control" value="${p.qty}" name="qty">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">상품수정</button>
+    </form>
+    <form action="/product/delete" method="post">
+        <input type="hidden" class="form-control" value="${p.id}" name="id">
+        <button type="submit" class="btn btn-danger">상품삭제</button>
     </form>
 </div>
 </body>
