@@ -3,6 +3,7 @@ package shop.mtcoding.mall.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.mall.model.Product;
 import shop.mtcoding.mall.model.ProductRepository;
@@ -19,8 +20,20 @@ public class ProductController {
     private ProductRepository productRepository; // IoC 컨테이너의 내용 DI하기 위해 사용
     // question? SRP 위배에 관련된 것.
 
+    @GetMapping("/product/{id}")
+    public String detail(@PathVariable int id) {
+        System.out.println("id : " + id);
+        Product product = productRepository.findById(id);
+        System.out.println(product.getId());
+        System.out.println(product.getName());
+        System.out.println(product.getPrice());
+        System.out.println(product.getQty());
+        return "detail";
+    }
+
     @GetMapping("/home")
     public String home(HttpServletRequest request) {
+
         List<Product> productList = productRepository.findAll();
         request.setAttribute("productList", productList);
 

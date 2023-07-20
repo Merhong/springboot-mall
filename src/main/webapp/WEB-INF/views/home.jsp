@@ -43,7 +43,7 @@
         <c:forEach var="p" items="${productList}">
             <tr>
                 <td>${p.id}</td>
-                <td>${p.name}</td>
+                <td><a href="/product/${p.id}">${p.name}</a></td>
                 <td>${p.price}원</td>
                 <td>${p.qty}개</td>
             </tr>

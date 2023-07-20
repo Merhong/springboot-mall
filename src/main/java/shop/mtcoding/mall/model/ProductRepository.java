@@ -23,10 +23,19 @@ public class ProductRepository {
         query.executeUpdate();  // 전송
     }
 
+    // 전체 목록 조회
     public List<Product> findAll() {
         Query query = em.createNativeQuery("select * from product_tb", Product.class);
         List<Product> productlist = query.getResultList();  // 한건이면 getSingleResult(), 여러건이면 getResultList()
 
         return productlist;
+    }
+
+    // id 사용해서 조회
+    public Product findById(int id) {
+        Query query = em.createNativeQuery("select * from product_tb where id = :id", Product.class);
+        query.setParameter("id", id);   // 변수 바인딩
+        Product product = (Product) query.getSingleResult();  // 한건이면 getSingleResult(), 여러건이면 getResultList()
+        return product;
     }
 }
