@@ -1,5 +1,6 @@
 package shop.mtcoding.mall.model;
 
+import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,32 @@ import java.util.List;
 public class ProductRepository {
 
     @Autowired
-    private EntityManager em;
+    private EntityManager em; // 오브젝트 맵핑을 해준다.
+
+    // ID로 Join한 내용 조회
+    public Product findByIdJoinSeller(int id) {
+        Query query = em.createNativeQuery("select *\n" +
+                "from product_tb pt\n" +
+                "inner join seller_tb st\n" +
+                "on pt.seller_id = st.id\n" +
+                "where pt.id = :id", Product.class); // 둘다 Entity이므로 맵핑 가능!!
+        Product product = (Product) query.getSingleResult();  // 한건이면 getSingleResult(), 여러건이면 getResultList()
+
+         return product;
+    }
+
+
+    public ProductDTO findByIdDTO(int id) {
+        // 조회할 것이니 맵핑할 클래스를 적어준다 -> Product.class
+        Query query = em.createNativeQuery("select id, name, price, qty, '설명' as des from product_tb where id = :id");
+        query.setParameter("id", id);   // 바인딩
+
+        //QLRM 라이브러리 사용
+        JpaResultMapper mapper = new JpaResultMapper();
+        ProductDTO productDTO = mapper.uniqueResult(query, ProductDTO.class);
+
+        return productDTO;
+    }
 
     // @트랜잭션을 달지 않으면 DB에 커밋(저장)되지 않는다.
     // Insert, Update, Delete에는 트랜잭션을 달아줘야 함!!!
