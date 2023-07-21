@@ -28,24 +28,25 @@ public class ProductRepository {
     @Transactional
     public void saveWithFk(String name, int price, int qty, int sellerId) {
         Query query = em.createNativeQuery("insert into product_tb(name, price, qty, seller_id) values(:name, :price, :qty, :sellerId)");
-        query.setParameter("name", name);   // 바인딩
+        query.setParameter("name", name);   // 변수 바인딩 : DB의 name "컬럼" 과 Java의 name "변수"를 매칭
         query.setParameter("price", price);
         query.setParameter("qty", qty);
         query.setParameter("sellerId", sellerId);
         query.executeUpdate();  // 전송
     }
 
-    // ID로 Join한 내용 조회
+    // Product ID로 Join한 내용 조회 -> 1번 상품에 대한 판매자 목록
     public Product findByIdJoinSeller(int id) {
         Query query = em.createNativeQuery("select *\n" +
                 "from product_tb pt\n" +
                 "inner join seller_tb st\n" +
                 "on pt.seller_id = st.id\n" +
                 "where pt.id = :id", Product.class); // 둘다 Entity이므로 맵핑 가능!!
-        query.setParameter("id", id); // id를 연결시켜준다.
+
+        query.setParameter("id", id); // 변수 바인딩 : DB의 id "컬럼" 과 Java의 id "변수"를 매칭
         Product product = (Product) query.getSingleResult();  // 한건이면 getSingleResult(), 여러건이면 getResultList()
 
-         return product;
+        return product;
     }
 
 
@@ -54,7 +55,7 @@ public class ProductRepository {
         Query query = em.createNativeQuery("select id, name, price, qty, '설명' as des from product_tb where id = :id");
         query.setParameter("id", id);   // 바인딩
 
-        //QLRM 라이브러리 사용
+        // QLRM 라이브러리 사용
         JpaResultMapper mapper = new JpaResultMapper();
         ProductDTO productDTO = mapper.uniqueResult(query, ProductDTO.class);
 
@@ -66,7 +67,7 @@ public class ProductRepository {
     @Transactional
     public void save(String name, int price, int qty) {
         Query query = em.createNativeQuery("insert into product_tb(name, price, qty) values(:name, :price, :qty)");
-        query.setParameter("name", name);   // 바인딩
+        query.setParameter("name", name);   // 변수 바인딩 : DB의 name "컬럼" 과 Java의 name "변수"를 매칭
         query.setParameter("price", price);
         query.setParameter("qty", qty);
         query.executeUpdate();  // 전송
@@ -83,24 +84,28 @@ public class ProductRepository {
     // id 사용해서 조회
     public Product findById(int id) {
         Query query = em.createNativeQuery("select * from product_tb where id = :id", Product.class); // :id는 쿼리문에서 메서드의 매개변수를 할당하는 표현
-        query.setParameter("id", id);   // 변수 바인딩
+        query.setParameter("id", id);   // 변수 바인딩 : DB의 id "컬럼" 과 Java의 id "변수"를 매칭
         Product product = (Product) query.getSingleResult();  // 한건이면 getSingleResult(), 여러건이면 getResultList()
         return product;
     }
 
     // id로 내용 삭제
+    // @트랜잭션을 달지 않으면 DB에 커밋(저장)되지 않는다.
+    // Insert, Update, Delete에는 트랜잭션을 달아줘야 함!!!
     @Transactional
     public void deleteById(int id) {
         Query query = em.createNativeQuery("delete from product_tb where id = :id", Product.class); // :id는 쿼리문에서 메서드의 매개변수를 할당하는 표현
-        query.setParameter("id", id);   // 변수 바인딩 : id "컬럼" 과 id "변수"를 매칭
+        query.setParameter("id", id);   // 변수 바인딩 : DB의 id "컬럼" 과 Java의 id "변수"를 매칭
         query.executeUpdate();  // 전송
     }
 
     // update
+    // @트랜잭션을 달지 않으면 DB에 커밋(저장)되지 않는다.
+    // Insert, Update, Delete에는 트랜잭션을 달아줘야 함!!!
     @Transactional
     public void updateRepo(int id, String name, int price, int qty) {
         Query query = em.createNativeQuery("UPDATE product_tb SET name = :name, price = :price, qty = :qty where id = :id", Product.class);
-        query.setParameter("id", id);       // 변수 바인딩 : id "컬럼" 과 id "변수"를 매칭
+        query.setParameter("id", id);       // 변수 바인딩 : DB의 id "컬럼" 과 Java의 id "변수"를 매칭
         query.setParameter("name", name);
         query.setParameter("price", price);
         query.setParameter("qty", qty);

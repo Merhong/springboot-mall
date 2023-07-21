@@ -22,7 +22,7 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/")
+    @GetMapping("/") // 홈페이지
     public String home(HttpServletRequest request) {
 
         // 상품 전체 항목 조회
@@ -39,7 +39,9 @@ public class ProductController {
     public String writepage() {
         return "write";
     }
+    
 
+    // 상품등록
     @PostMapping("/product")    // 포스트맵핑에는 모델명을 넣는다.
     public void write(String name, int price, int qty, HttpServletResponse response) throws IOException { // 파싱한 값을 받는다.
         System.out.println("name : " + name);
@@ -51,6 +53,7 @@ public class ProductController {
         // return "redirect:/"; // Springboot에서 지원하는 Redirect 문법
     }
 
+    // 상품 상세보기
     @GetMapping("/product/{id}")
     public String detail(@PathVariable int id, HttpServletRequest request) {
         System.out.println("id : " + id);
@@ -70,7 +73,7 @@ public class ProductController {
     //     return "home";
     // }
 
-    // 삭제요청, Redirect (Springboot 문법)
+    // 삭제요청, Redirect (Springboot 문법 사용)
     @PostMapping("/product/delete")
     public String delete(int id) {
 

@@ -25,11 +25,15 @@ public class ProductRepositoryTest {
     @Test
     public void findByIdJoinSeller_test() {
         // Given (테스트를 하기 위해서 필요한 데이터 만들기)
-        sellerRepository.save("홍길동", "asdf@naver.com");
-        productRepository.saveWithFk("사과", 5000, 50, 1);
+        sellerRepository.save("김씨", "asdf@naver.com");
+        sellerRepository.save("박씨", "asdf@naver.com");
+        productRepository.saveWithFk("사과", 5000, 50, 1); // 1번 : 김씨
+        productRepository.saveWithFk("참외", 5000, 50, 1);
+        productRepository.saveWithFk("딸기", 5000, 50, 2); // 2번 : 박씨
+        productRepository.saveWithFk("바나나", 5000, 50, 2);
 
         // When (테스트 진행)
-        Product product = productRepository.findByIdJoinSeller(1);
+        Product product = productRepository.findByIdJoinSeller(1); // Product Id를 기준으로 찾는다.
 
         // Then (테스트 확인)
         System.out.println("ID :" + product.getId());
@@ -61,6 +65,7 @@ public class ProductRepositoryTest {
     @Test
     public void findById_test() {
         // Given (테스트를 하기 위해서 필요한 데이터 만들기)
+        // productRepository.save("사과", 5000, 50);
         productRepository.save("사과", 5000, 50);
 
         // When (테스트 진행)
