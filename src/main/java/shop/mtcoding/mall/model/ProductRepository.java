@@ -42,9 +42,10 @@ public class ProductRepository {
                 "inner join seller_tb st\n" +
                 "on pt.seller_id = st.id\n" +
                 "where pt.id = :id", Product.class); // 둘다 Entity이므로 맵핑 가능!!
+        query.setParameter("id", id); // id를 연결시켜준다.
         Product product = (Product) query.getSingleResult();  // 한건이면 getSingleResult(), 여러건이면 getResultList()
 
-        return product;
+         return product;
     }
 
 
@@ -53,7 +54,7 @@ public class ProductRepository {
         Query query = em.createNativeQuery("select id, name, price, qty, '설명' as des from product_tb where id = :id");
         query.setParameter("id", id);   // 바인딩
 
-        // QLRM 라이브러리 사용
+        //QLRM 라이브러리 사용
         JpaResultMapper mapper = new JpaResultMapper();
         ProductDTO productDTO = mapper.uniqueResult(query, ProductDTO.class);
 

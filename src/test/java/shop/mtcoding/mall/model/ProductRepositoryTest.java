@@ -29,7 +29,7 @@ public class ProductRepositoryTest {
         productRepository.saveWithFk("사과", 5000, 50, 1);
 
         // When (테스트 진행)
-        Product product = productRepository.findById(1);
+        Product product = productRepository.findByIdJoinSeller(1);
 
         // Then (테스트 확인)
         System.out.println("ID :" + product.getId());
