@@ -39,26 +39,33 @@ public class ProductController {
     public String writepage() {
         return "write";
     }
-    
+
 
     // 상품등록
-    @PostMapping("/product")    // 포스트맵핑에는 모델명을 넣는다.
-    public void write(String name, int price, int qty, HttpServletResponse response) throws IOException { // 파싱한 값을 받는다.
+    // 포스트맵핑에는 모델명을 넣는다.
+    @PostMapping("/product")
+    // 파싱한 값을 받는다.
+    public void write(String name, int price, int qty, HttpServletResponse response) throws IOException {
         System.out.println("name : " + name);
         System.out.println("price : " + price);
         System.out.println("qty : " + qty);
 
-        productRepository.save(name, price, qty); // IoC 컨테이너 DI
-        response.sendRedirect("/"); // 홈페이지로 redirect
-        // return "redirect:/"; // Springboot에서 지원하는 Redirect 문법
+        // IoC 컨테이너 DI
+        productRepository.save(name, price, qty);
+        // 홈페이지로 redirect
+        response.sendRedirect("/");
+        // // Springboot에서 지원하는 Redirect 문법
+        // return "redirect:/";
     }
 
     // 상품 상세보기
     @GetMapping("/product/{id}")
     public String detail(@PathVariable int id, HttpServletRequest request) {
-        System.out.println("id : " + id);
+        // findById()메서드 동적 호출
         Product product = productRepository.findById(id);
-        request.setAttribute("p", product); // 가방(request)에 수건(product)을 담아서 view에서 사용
+        // 가방(request)에 수건(product)을 담아서 view에서 사용
+        request.setAttribute("p", product);
+
         System.out.println(product.getId());
         System.out.println(product.getName());
         System.out.println(product.getPrice());
@@ -86,7 +93,7 @@ public class ProductController {
 
     // 상품 수정 요청 -> 홈페이지로 Redirect
     @PostMapping("/product/update")
-    public String update(int id, String name, int price, int qty, HttpServletResponse response) throws IOException {
+    public String update(int id, String name, int price, int qty) throws IOException {
 
         // 상품 수정 (update)
         productRepository.updateRepo(id, name, price, qty); // 업데이트할 값을 매개변수로 메서드 호출

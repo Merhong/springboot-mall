@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Import;
 
 import java.util.List;
 
-// T -> DS -> C -> Resp -> DB
-// 현재 (Resp -> DB) 과정만 테스트 하고 싶음
+// T -> DS -> C -> Repo -> DB
+// 현재 (Repo -> DB) 과정만 테스트 하고 싶음
 @Import({ProductRepository.class, SellerRepository.class})
 @DataJpaTest // T -> DS -> C -> ( R -> DB )
 public class ProductRepositoryTest {
@@ -40,9 +40,9 @@ public class ProductRepositoryTest {
         System.out.println("이름 :" + product.getName());
         System.out.println("가격 :" + product.getPrice());
         System.out.println("재고 :" + product.getQty());
-        System.out.println("================="+product.getSeller().getId());
-        System.out.println("================="+product.getSeller().getName());
-        System.out.println("================="+product.getSeller().getEmail());
+        System.out.println("=================" + product.getSeller().getId());
+        System.out.println("=================" + product.getSeller().getName());
+        System.out.println("=================" + product.getSeller().getEmail());
     }
 
     @Test
@@ -61,7 +61,6 @@ public class ProductRepositoryTest {
         System.out.println("설명 :" + productDTO.getDes());
     }
 
-    // Test과정 : Given -> When -> Then
     @Test
     public void findById_test() {
         // Given (테스트를 하기 위해서 필요한 데이터 만들기)

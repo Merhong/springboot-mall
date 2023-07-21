@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
 @Getter
 @Setter
 @Table(name = "seller_tb") // 테이블명 설정

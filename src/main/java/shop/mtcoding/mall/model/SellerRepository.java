@@ -15,9 +15,12 @@ public class SellerRepository {
 
     @Transactional
     public void save(String name, String email) {
+        // 1. 쿼리 작성
         Query query = em.createNativeQuery("insert into seller_tb(name, email) values(:name, :email)");
-        query.setParameter("name", name);   // 바인딩
+        // 2. 변수 바인딩
+        query.setParameter("name", name);
         query.setParameter("email", email);
-        query.executeUpdate();  // 전송
+        // 3. 전송
+        query.executeUpdate();
     }
 }
