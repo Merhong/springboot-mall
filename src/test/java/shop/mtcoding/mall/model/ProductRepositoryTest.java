@@ -9,12 +9,15 @@ import java.util.List;
 
 // T -> DS -> C -> Resp -> DB
 // 현재 (Resp -> DB) 과정만 테스트 하고 싶음
-@Import(ProductRepository.class)
+@Import({ProductRepository.class, SellerRepository.class})
 @DataJpaTest // T -> DS -> C -> ( R -> DB )
 public class ProductRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private SellerRepository sellerRepository;
 
     /* 단위 테스트 */
 
@@ -22,7 +25,8 @@ public class ProductRepositoryTest {
     @Test
     public void findByIdJoinSeller_test() {
         // Given (테스트를 하기 위해서 필요한 데이터 만들기)
-        productRepository.save("사과", 5000, 50);
+        sellerRepository.save("홍길동", "asdf@naver.com");
+        productRepository.saveWithFk("사과", 5000, 50, 1);
 
         // When (테스트 진행)
         Product product = productRepository.findById(1);
@@ -32,6 +36,9 @@ public class ProductRepositoryTest {
         System.out.println("이름 :" + product.getName());
         System.out.println("가격 :" + product.getPrice());
         System.out.println("재고 :" + product.getQty());
+        System.out.println("================="+product.getSeller().getId());
+        System.out.println("================="+product.getSeller().getName());
+        System.out.println("================="+product.getSeller().getEmail());
     }
 
     @Test

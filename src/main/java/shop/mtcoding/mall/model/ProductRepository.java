@@ -23,6 +23,18 @@ public class ProductRepository {
     @Autowired
     private EntityManager em; // 오브젝트 맵핑을 해준다.
 
+    // @트랜잭션을 달지 않으면 DB에 커밋(저장)되지 않는다.
+    // Insert, Update, Delete에는 트랜잭션을 달아줘야 함!!!
+    @Transactional
+    public void saveWithFk(String name, int price, int qty, int sellerId) {
+        Query query = em.createNativeQuery("insert into product_tb(name, price, qty, seller_id) values(:name, :price, :qty, :sellerId)");
+        query.setParameter("name", name);   // 바인딩
+        query.setParameter("price", price);
+        query.setParameter("qty", qty);
+        query.setParameter("sellerId", sellerId);
+        query.executeUpdate();  // 전송
+    }
+
     // ID로 Join한 내용 조회
     public Product findByIdJoinSeller(int id) {
         Query query = em.createNativeQuery("select *\n" +
