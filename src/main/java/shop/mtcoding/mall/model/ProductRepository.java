@@ -10,7 +10,8 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * @Repository - 컴포넌트 스캔을 해준다.
+ * Repository
+ * - 컴포넌트 스캔을 해준다.
  * - 알아서 new 해줌
  * - heap 메모리에 로딩된다.
  * - IoC 컨테이너에 들어감
